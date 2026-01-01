@@ -52,6 +52,12 @@ function ifNumber (num) {
 }
 
 function ifOperator (value) {
+    if (secondValueArr.length > 0) {
+        let result = ifEqual()
+        updateDisplay(result);
+        firstValueArr = Array.from(String(result), Number);
+        secondValueArr = [];
+    }
     operation = value;
     mode = "second"
 }
@@ -61,6 +67,7 @@ function ifEqual () {
     let num2 = Number(secondValueArr.join(""))
     let result = operate(operation, num1, num2);
     updateDisplay(result);
+    return result;
 }
 
 function ifClear () {
