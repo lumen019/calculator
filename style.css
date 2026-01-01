@@ -7,54 +7,71 @@
 #calculator {
     width: 320px; 
     max-width: 95vw; 
+    margin: 50px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 #display {
     height: 70px;
-    font-size: x-large;
+    font-size: 30px;
     font-weight: bold;
     padding: 10px;
 }
 
 #btnContainer {
     display: flex;
+    gap: 10px;
 }
 
 #leftContainer {
-    flex: 4;
     display: flex;
     flex-direction: column;
+    flex: 4;
+    gap: 10px;
 }
 
 #topRow {
     display: flex;
+    gap:10px;
 }
 
 #topRow button {
     flex: 1;
+    height: 40px;
 }
 
 #numberContainer {
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
 #numberContainer .number {
-    flex: 1;
-    height: 30px;
+    flex: 1 0 30%;
+    height: 60px;
 
 }
 
 #bottomRow {
     display: flex;
+    gap: 10px;
 }
 
 #bottomRow .number {
     flex: 1;
+    height: 40px;
 }
 
 #rightContainer {
     display: flex;
     flex: 1;
     flex-direction: column;
+}
+
+.operator, 
+#equalBtn {
+    flex: 1;
 }
