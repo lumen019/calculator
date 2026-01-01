@@ -29,19 +29,16 @@ function operate (operate, num1, num2) {
         multiply(num1, num2);
     }
 
+const buttons = document.querySelectorAll("button")
+let display = document.querySelector("#display")
 
-const buttonValues = [
-    "Undo", "Clear", "÷", "x", "-", "+", "=",
-    "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"
-]
+buttons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        display.value += e.target.innerText
+        num1 = e.target.innerText
+    });
+})
 
-for (let i = 0; i< buttonValues.length; i++){
-    let value = buttonValues [i];
-    let btnContainer = document.querySelector("#btnContainer");
-    let button = document.createElement("button");
-    btnContainer.appendChild(button);
-    button.innerText = value;
-};
 
 
 
