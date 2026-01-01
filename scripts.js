@@ -52,10 +52,10 @@ function ifNumber (num) {
 }
 
 function ifOperator (value) {
-    if (secondValueArr.length > 0) {
+    if (secondValueArr.length > 0) {  //checks if second arr has values, if yes calculate with the current values.
         let result = ifEqual()
         updateDisplay(result);
-        firstValueArr = Array.from(String(result), Number);
+        firstValueArr = Array.from(String(result), Number); 
         secondValueArr = [];
     }
     operation = value;
@@ -88,6 +88,7 @@ function ifDelete () {
     }
 }
 
+//event delegator
 btnContainer.addEventListener ("click", (e) => {
     const btn = e.target;
 
@@ -95,10 +96,10 @@ btnContainer.addEventListener ("click", (e) => {
         ifNumber(btn.innerText)
     } else if (btn.classList.contains("operator")) {
         ifOperator(btn.innerText)
-    } else if (btn.id === "clearBtn") {
-        ifClear()
     } else if (btn.id === "equalBtn") {
         ifEqual()
+    } else if (btn.id === "clearBtn") {
+        ifClear()
     } else if (btn.id === "delBtn") {
         ifDelete()
     }

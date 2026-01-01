@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#calculator {
+    width: 320px; 
+    max-width: 95vw; 
+}
+
+#display {
+    height: 70px;
+    font-size: x-large;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#btnContainer {
+    display: flex;
+}
+
+#leftContainer {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+}
+
+#topRow {
+    display: flex;
+}
+
+#topRow button {
+    flex: 1;
+}
+
+#numberContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#numberContainer .number {
+    flex: 1;
+    height: 30px;
+
+}
+
+#bottomRow {
+    display: flex;
+}
+
+#bottomRow .number {
+    flex: 1;
+}
+
+#rightContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
