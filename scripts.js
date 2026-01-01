@@ -1,9 +1,8 @@
-let firstValue = [];
+let firstValueArr = [];
 let operation;
-let secondValue = [];
+let secondValueArr = [];
 let mode = "first";
 
-//math functions
 function add (a, b) { 
     return a + b; 
 }
@@ -26,11 +25,11 @@ function operate (operator, num1, num2) {
         case "+":
             return add(num1, num2);
         case "-":
-            return subtract(num1, num2)
+            return subtract(num1, num2);
         case "x":
-            return multiply(num1, num2)
+            return multiply(num1, num2);
         case "÷":
-            return divide(num1, num2)
+            return divide(num1, num2);
     }
 }
 
@@ -38,17 +37,17 @@ const btnContainer = document.querySelector("#btnContainer")
 const display = document.querySelector("#display")
 
 
-function updateDisplay (value) {
-    display.value = value;
+function updateDisplay (text) {
+    display.value = text;
 }
 
 function ifNumber (num) {
     if (mode === "first") {
-        firstValue.push(num);
-        updateDisplay(firstValue.join(""))
+        firstValueArr.push(num);
+        updateDisplay(firstValueArr.join(""));
     } else if (mode === "second") {
-        secondValue.push(num);
-        updateDisplay(secondValue.join(""))
+        secondValueArr.push(num);
+        updateDisplay(secondValueArr.join("")); 
     }
 }
 
@@ -58,20 +57,29 @@ function ifOperator (value) {
 }
 
 function ifEqual () {
-    let num1 = Number(firstValue.join(""))
-    let num2 = Number(secondValue.join(""))
+    let num1 = Number(firstValueArr.join(""))
+    let num2 = Number(secondValueArr.join(""))
     let result = operate(operation, num1, num2);
     updateDisplay(result);
 }
 
 function ifClear () {
-    firstValue = [];
+    firstValueArr = [];
     operation = "";
-    secondValue = [];
+    secondValueArr = [];
     mode = "first";
     updateDisplay("");
 }
 
+function ifDelete () {
+    if (mode === "first"){
+        firstValueArr.pop();
+        updateDisplay(firstValueArr.join(""));
+    } else if (mode === "second") {
+        secondValueArr.pop();
+        updateDisplay(secondValueArr.join("")); 
+    }
+}
 
 btnContainer.addEventListener ("click", (e) => {
     const btn = e.target;
@@ -84,6 +92,8 @@ btnContainer.addEventListener ("click", (e) => {
         ifClear()
     } else if (btn.id === "equalBtn") {
         ifEqual()
+    } else if (btn.id === "delBtn") {
+        ifDelete()
     }
 })
 
