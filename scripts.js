@@ -32,15 +32,13 @@ function operate (operator, num1, num2) {
         case "x":
             return multiply(num1, num2);
         case "÷":
-            if(num2 === 0) {
-                //resets
+            if(num2 === 0) { //displays error msg when divided by 0
                 firstValueArr = [];
                 operation = "";
                 secondValueArr = [];
                 mode = "first";
 
-                //displays error msg
-                display.value = "ERROR STUPID"
+                display.value = "ERROR STUPID";
                 return null;
             } else {
                 return divide(num1, num2);
@@ -48,15 +46,16 @@ function operate (operator, num1, num2) {
     }
 }
 
-const btnContainer = document.querySelector("#btnContainer")
-const display = document.querySelector("#display")
-const dotBtn = document.querySelector("#dotBtn")
+const btnContainer = document.querySelector("#btnContainer");
+const display = document.querySelector("#display");
+const dotBtn = document.querySelector("#dotBtn");
 
 
-function updateDisplay (text) {
+function updateDisplay () { 
+    // converts and joins array into string, adds spaces and operator if operator exist.
     let str = firstValueArr.join("");
 
-    if (operation) { //if there is an operator join it in the str
+    if (operation) {
         str = str + " " + operation + " ";
     }; 
 
@@ -74,27 +73,20 @@ function ifNumber (num) {
 }
 
 function ifOperator (value) {
-    if (mode === "first" && firstValueArr.length === 0 && value === "-"){
-        firstValueArr.push("-");
-        updateDisplay();
-        return;
-    }
-
-    if (mode === "second" && secondValueArr.length === 0 && value === "-"){
-        secondValueArr.push("-");
-        updateDisplay();
-        return;
-    }
-
     if (secondValueArr.length > 0) {
+        //if a second number already exist when operator is pressed, calculate first
         let result = ifEqual();
-        firstValueArr = String(result).split(""); 
+        firstValueArr = String(result).split(""); //sets the first value to result for chaining
         secondValueArr = [];
     }
 
     operation = value;
     mode = "second"
     updateDisplay();
+}
+
+function roundResult(num) {
+    return Math.round(num*10000)/10000;
 }
 
 function ifEqual () {
@@ -104,6 +96,7 @@ function ifEqual () {
 
     //only updates display if result isn't null
     if(result !== null){
+        result = roundResult(result);
         display.value = result;
 
         //reset after equal is pressed, while keep result as the firstValueArr.
