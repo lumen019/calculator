@@ -51,16 +51,15 @@ const display = document.querySelector("#display");
 const dotBtn = document.querySelector("#dotBtn");
 
 
-function updateDisplay () { 
-    // converts and joins array into string, adds spaces and operator if operator exist.
-    let str = firstValueArr.join("");
+function updateDisplay () { //function to show the current state of the array when called
+    let str = firstValueArr.join(""); 
 
-    if (operation) {
+    if (operation) {  
         str = str + " " + operation + " ";
     }; 
 
-    str += secondValueArr.join("");
-    display.value = str;
+    str += secondValueArr.join(""); 
+    display.value = str; 
 }
 
 function ifNumber (num) {
@@ -68,15 +67,15 @@ function ifNumber (num) {
         firstValueArr.push(num);
     } else if (mode === "second") {
         secondValueArr.push(num); 
-    };
+    }
     updateDisplay();
 }
 
 function ifOperator (value) {
     if (secondValueArr.length > 0) {
-        //if a second number already exist when operator is pressed, calculate first
+        //if a second number already exist when operator is pressed, calculate updateimmediately
         let result = ifEqual();
-        firstValueArr = String(result).split(""); //sets the first value to result for chaining
+        firstValueArr = String(result).split(""); //sets the first value to result, for chaining calculations
         secondValueArr = [];
     }
 
