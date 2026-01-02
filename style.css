@@ -13,9 +13,9 @@ body {
 }
 
 #calculator {
-    width: 320px; 
+    width: 340px; 
     max-width: 95vw; 
-    margin: 50px auto;
+    margin: 150px auto;
     padding: 20px;
     display: flex;
     flex-direction: column;
