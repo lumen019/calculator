@@ -35,6 +35,7 @@ function operate (operator, num1, num2) {
 
 const btnContainer = document.querySelector("#btnContainer")
 const display = document.querySelector("#display")
+const dotBtn = document.querySelector("#dotBtn")
 
 
 function updateDisplay (text) {
@@ -102,6 +103,19 @@ btnContainer.addEventListener ("click", (e) => {
         ifClear()
     } else if (btn.id === "delBtn") {
         ifDelete()
+    }
+})
+
+//dot functionality, limit to 1 dot per value. 
+dotBtn.addEventListener("click", () => {
+    if (mode === "first") {
+        if (firstValueArr.includes(".")) return;
+        firstValueArr.push(".");
+        updateDisplay(firstValueArr.join(""));
+    } else if (mode === "second") {
+        if (secondValueArr.includes(".")) return;
+        secondValueArr.push(".");
+        updateDisplay(secondValueArr.join("")); 
     }
 })
 

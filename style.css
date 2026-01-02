@@ -7,11 +7,11 @@
 #calculator {
     width: 320px; 
     max-width: 95vw; 
-    margin: 50px;
+    margin: 50px auto;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 #display {
@@ -21,10 +21,18 @@
     padding: 10px;
 }
 
+/* all btn wrapper */
 #btnContainer {
     display: flex;
     gap: 10px;
 }
+
+#btnContainer button {
+    font-size: clamp(16px, 2vw, 24px);
+}
+
+
+/* left side */
 
 #leftContainer {
     display: flex;
@@ -49,7 +57,7 @@
     gap: 10px;
 }
 
-#numberContainer .number {
+#numberContainer button {
     flex: 1 0 30%;
     height: 60px;
 
@@ -60,18 +68,33 @@
     gap: 10px;
 }
 
-#bottomRow .number {
+#bottomRow button {
     flex: 1;
     height: 40px;
 }
 
+
+/* right side  */
+
 #rightContainer {
     display: flex;
     flex: 1;
+    gap: 10px;
     flex-direction: column;
 }
 
 .operator, 
 #equalBtn {
     flex: 1;
+}
+
+/* Misc */
+
+button {
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: lightgray;
 }
