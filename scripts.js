@@ -38,7 +38,7 @@ function operate (operator, num1, num2) {
                 secondValueArr = [];
                 mode = "first";
 
-                display.value = "ERROR STUPID";
+                display.textContent = "ERROR STUPID";
                 return null;
             } else {
                 return divide(num1, num2);
@@ -59,7 +59,7 @@ function updateDisplay () { //function to show the current state of the array wh
     }; 
 
     str += secondValueArr.join(""); 
-    display.value = str; 
+    display.textContent = str; 
 }
 
 function ifNumber (num) {
@@ -96,7 +96,7 @@ function ifEqual () {
     //only updates display if result isn't null
     if(result !== null){
         result = roundResult(result);
-        display.value = result;
+        display.textContent = result;
 
         //reset after equal is pressed, while keep result as the firstValueArr.
         firstValueArr = String(result).split("");
