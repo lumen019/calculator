@@ -21,6 +21,9 @@ function divide (a, b) {
 
 
 function operate (operator, num1, num2) {
+    num1 =Number(num1);
+    num2 =Number(num2);
+
     switch (operator) {
         case "+":
             return add(num1, num2);
@@ -29,7 +32,19 @@ function operate (operator, num1, num2) {
         case "x":
             return multiply(num1, num2);
         case "÷":
-            return divide(num1, num2);
+            if(num2 === 0) {
+                //resets
+                firstValueArr = [];
+                operation = "";
+                secondValueArr = [];
+                mode = "first";
+
+                //displays error msg
+                updateDisplay("ERROR STUPID");
+                return null;
+            } else {
+                return divide(num1, num2);
+            }   
     }
 }
 
@@ -67,7 +82,26 @@ function ifEqual () {
     let num1 = Number(firstValueArr.join(""))
     let num2 = Number(secondValueArr.join(""))
     let result = operate(operation, num1, num2);
-    updateDisplay(result);
+
+    //only updates display if result isn't null
+    if(result !== null){
+        updateDisplay(result);
+
+        //reset after equal is pressed, while keep result as the firstValueArr.
+        firstValueArr = Array.from(String(result), Number); 
+        operation = "";
+        secondValueArr = [];
+        mode = "first";
+    } else {
+        //resets entirely if null 
+        firstValueArr = [];
+        secondValueArr = [];
+        operation = "";
+        mode = "first";
+    }
+
+    
+
     return result;
 }
 
@@ -118,15 +152,3 @@ dotBtn.addEventListener("click", () => {
         updateDisplay(secondValueArr.join("")); 
     }
 })
-
-
-
-
-
-
-
-
-
-
-
-
