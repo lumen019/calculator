@@ -2,7 +2,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -10,6 +9,8 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    background-color: #ddd5c4;
+    font-family: monospace;
 }
 
 #calculator {
@@ -30,7 +31,7 @@ body {
     margin-top: auto;  
     width: 100%;
     text-align: center;
-    background-color: lightblue;
+    background-color: rgb(124, 123, 123);
     padding: 15px;
 
 }
@@ -78,7 +79,7 @@ body {
 
 #topRow button {
     flex: 1;
-    height: 40px;
+    height: 60px;
 }
 
 #numberContainer {
@@ -90,7 +91,7 @@ body {
 #numberContainer button {
     flex: 1 0 30%;
     height: 60px;
-
+    font-size: 18px;
 }
 
 #bottomRow {
@@ -100,7 +101,7 @@ body {
 
 #bottomRow button {
     flex: 1;
-    height: 40px;
+    height: 60px;
 }
 
 
@@ -116,13 +117,13 @@ body {
 .operator, 
 #equalBtn {
     flex: 1;
-    font-weight: bold;
 }
 
 /* Misc */
 
 button {
     border: none;
+    font-family: monospace;
 }
 
 button:hover {
@@ -138,7 +139,7 @@ button:active{
 }
 
 #equalBtn {
-    flex: 1.7;
+    flex: 2;
 }
 
 #delBtn, 
@@ -146,3 +147,9 @@ button:active{
 #equalBtn {
     background-color: #ff8a65;
 }
+
+#clearBtn {
+    font-size: 18px !important;
+}
+
+
