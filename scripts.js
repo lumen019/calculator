@@ -40,7 +40,7 @@ function operate (operator, num1, num2) {
                 mode = "first";
 
                 //displays error msg
-                updateDisplay("ERROR STUPID");
+                display.value = "ERROR STUPID"
                 return null;
             } else {
                 return divide(num1, num2);
@@ -54,28 +54,47 @@ const dotBtn = document.querySelector("#dotBtn")
 
 
 function updateDisplay (text) {
-    display.value = text;
+    let str = firstValueArr.join("");
+
+    if (operation) { //if there is an operator join it in the str
+        str = str + " " + operation + " ";
+    }; 
+
+    str += secondValueArr.join("");
+    display.value = str;
 }
 
 function ifNumber (num) {
     if (mode === "first") {
         firstValueArr.push(num);
-        updateDisplay(firstValueArr.join(""));
     } else if (mode === "second") {
-        secondValueArr.push(num);
-        updateDisplay(secondValueArr.join("")); 
-    }
+        secondValueArr.push(num); 
+    };
+    updateDisplay();
 }
 
 function ifOperator (value) {
-    if (secondValueArr.length > 0) {  //checks if second arr has values, if yes calculate with the current values.
-        let result = ifEqual()
-        updateDisplay(result);
-        firstValueArr = Array.from(String(result), Number); 
+    if (mode === "first" && firstValueArr.length === 0 && value === "-"){
+        firstValueArr.push("-");
+        updateDisplay();
+        return;
+    }
+
+    if (mode === "second" && secondValueArr.length === 0 && value === "-"){
+        secondValueArr.push("-");
+        updateDisplay();
+        return;
+    }
+
+    if (secondValueArr.length > 0) {
+        let result = ifEqual();
+        firstValueArr = String(result).split(""); 
         secondValueArr = [];
     }
+
     operation = value;
     mode = "second"
+    updateDisplay();
 }
 
 function ifEqual () {
@@ -85,10 +104,10 @@ function ifEqual () {
 
     //only updates display if result isn't null
     if(result !== null){
-        updateDisplay(result);
+        display.value = result;
 
         //reset after equal is pressed, while keep result as the firstValueArr.
-        firstValueArr = Array.from(String(result), Number); 
+        firstValueArr = String(result).split("");
         operation = "";
         secondValueArr = [];
         mode = "first";
@@ -99,9 +118,6 @@ function ifEqual () {
         operation = "";
         mode = "first";
     }
-
-    
-
     return result;
 }
 
@@ -110,17 +126,16 @@ function ifClear () {
     operation = "";
     secondValueArr = [];
     mode = "first";
-    updateDisplay("");
+    updateDisplay();
 }
 
 function ifDelete () {
     if (mode === "first"){
         firstValueArr.pop();
-        updateDisplay(firstValueArr.join(""));
     } else if (mode === "second") {
         secondValueArr.pop();
-        updateDisplay(secondValueArr.join("")); 
-    }
+    };
+    updateDisplay();
 }
 
 //event delegator
@@ -145,10 +160,10 @@ dotBtn.addEventListener("click", () => {
     if (mode === "first") {
         if (firstValueArr.includes(".")) return;
         firstValueArr.push(".");
-        updateDisplay(firstValueArr.join(""));
+        updateDisplay();
     } else if (mode === "second") {
         if (secondValueArr.includes(".")) return;
         secondValueArr.push(".");
-        updateDisplay(secondValueArr.join("")); 
+        updateDisplay(); 
     }
 })
